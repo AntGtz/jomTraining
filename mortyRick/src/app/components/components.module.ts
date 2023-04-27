@@ -10,6 +10,7 @@ import { RicmorCardComponent } from './ricmor-card/ricmor-card.component';
     CommonModule,
     IonicModule
   ],
-  exports: [RicmorCardComponent]
+  exports: [RicmorCardComponent],
+  
 })
 export class ComponentsModule { }
