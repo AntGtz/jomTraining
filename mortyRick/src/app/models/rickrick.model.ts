@@ -5,23 +5,14 @@ export class rickrick{
     /*The name for this resource. */
     public name?: string;
 
-    public order?: number;
+    public status?: string;
 
-    public gender_rate?: number;
+    public species?: string;
 
-    public capture_rate?: number;
+    public type?: string;
     
-    public base_happiness?: number;
+    public gender?: string;
     
-    public is_baby?: boolean;
+    public origin?: string;
     
-    public is_legendary?: boolean;
-    
-    public is_mythical?: boolean;
-    
-    public hatch_counter?: number;
-    
-    public has_gender_differences?: boolean;
-    
-    public forms_switchable?: boolean;
 }
