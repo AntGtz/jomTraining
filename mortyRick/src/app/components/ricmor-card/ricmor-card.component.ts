@@ -18,7 +18,7 @@ export class RicmorCardComponent  implements OnInit {
     ) { }
 
     goToPage() {
-      this.router.navigate(['/episodios']);
+      this.router.navigate(['/episodios/']);
     }
   
 
