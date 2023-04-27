@@ -21,7 +21,7 @@ export class RicmorEpisodesService {
     private httpClient: HttpClient
     ) { }
     getmortymorty(): Observable<any> {
-      return this.httpClient.get(`${this.apiUrl}/character/`, this.httpOptions)
+      return this.httpClient.get(`${this.apiUrl}/location/`, this.httpOptions)
     }
   
     doubleId(id: number) {
