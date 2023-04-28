@@ -18,3 +18,4 @@ import { AddcharacterPage } from './addcharacter.page';
   declarations: [AddcharacterPage]
 })
 export class AddcharacterPageModule {}
+
