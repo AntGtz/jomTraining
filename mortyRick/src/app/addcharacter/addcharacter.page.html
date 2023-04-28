@@ -15,20 +15,27 @@
   <br><br>
   <ion-input  label="Planeta" label-placement="floating" fill="outline" placeholder="Enter text" [(ngModel)]="inputValue6"></ion-input>
   <br><br>
-  <ion-button (click)="MostrarImpreso()" id="present-alert">Guardar</ion-button>
-  <ion-alert
-    trigger="present-alert"
-    header="Estos fueron tus registros"
-    header="Estos fueron tus registros"
-    subHeader={{inputValue1}}
-    subHeader={{inputValue2}}
-    subHeader={{inputValue3}}
-    subHeader={{inputValue4}}
-    subHeader={{inputValue5}}
-    subHeader={{inputValue6}}
-    [buttons]="alertButtons"
-  ></ion-alert>
-
+  <ion-button (click)="MostrarImpreso()">Guardar</ion-button>
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-label>{{myObject.Nombre}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{myObject.Estado}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{myObject.Especie}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{myObject.Tipo}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{myObject.Genero}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{myObject.Planeta}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content [fullscreen]="true">

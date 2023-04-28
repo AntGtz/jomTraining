@@ -13,9 +13,15 @@ export class AddcharacterPage implements OnInit {
   inputValue4: string = '';
   inputValue5: string = '';
   inputValue6: string = '';
-
-
-  public alertButtons = ['OK'];
+  
+  myObject = {
+    Nombre: '', 
+    Estado: '', 
+    Especie: '', 
+    Tipo: '',
+    Genero: '',
+    Planeta: ''
+              };
   constructor(
     private router: Router
     
@@ -28,7 +34,14 @@ export class AddcharacterPage implements OnInit {
     console.log(this.inputValue4);
     console.log(this.inputValue5);
     console.log(this.inputValue6);
+    this.myObject.Nombre = this.inputValue1;
+    this.myObject.Estado = this.inputValue2;
+    this.myObject.Especie = this.inputValue3;
+    this.myObject.Tipo = this.inputValue4;
+    this.myObject.Genero = this.inputValue5;
+    this.myObject.Planeta = this.inputValue6;
   }
+
 
   ngOnInit() {
   }
