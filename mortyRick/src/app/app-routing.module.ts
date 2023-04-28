@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'episodios',
     loadChildren: () => import('./episodios/episodios.module').then( m => m.EpisodiosPageModule)
+  },
+  {
+    path: 'addcharacter',
+    loadChildren: () => import('./addcharacter/addcharacter.module').then( m => m.AddcharacterPageModule)
   }
 ];
 
