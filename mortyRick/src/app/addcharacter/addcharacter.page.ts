@@ -13,9 +13,12 @@ export class AddcharacterPage implements OnInit {
   inputValue4: string = '';
   inputValue5: string = '';
   inputValue6: string = '';
+
+
+  public alertButtons = ['OK'];
   constructor(
     private router: Router
-
+    
   ) { }
 
   MostrarImpreso() {
