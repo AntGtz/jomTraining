@@ -9,12 +9,15 @@ import { Location } from 'src/app/models/location.model';
 })
 export class RicmorCardComponent  implements OnInit {
 
+
+
+   // cambia esto según la lógica de tu aplicación
   @Input() character: any;
   @Input() locations: any;
   constructor() { }
 
     episodes: Episode[] = [];
-    location: Location[] = [];
+    location: boolean = false
 
   ngOnInit() {}
 
@@ -27,15 +30,9 @@ export class RicmorCardComponent  implements OnInit {
     console.log(this.episodes)
   }
 
-  showLocation(location: []) {
-    if(this.location.length > 0){
-      this.location = [];
-    }else {
-      this.location = location;
-    }
-    console.log(this.location)
+  showLocation() {
+    this.location = !this.location;
   }
-
 
 }
 
