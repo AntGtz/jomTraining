@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Episode } from 'src/app/models/episode.model';
 import { Location } from 'src/app/models/location.model';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-ricmor-card',
@@ -19,7 +20,16 @@ export class RicmorCardComponent  implements OnInit {
     episodes: Episode[] = [];
     location: boolean = false
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    const swiper = new Swiper('.swiper-container', {
+      slidesPerView: 30,
+      spaceBetween: 30,
+      centeredSlides: true,
+      // y así sucesivamente
+    });
+
+  }
 
   showEpisodes(episodes: []) {
     if(this.episodes.length > 0){
