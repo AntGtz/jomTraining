@@ -21,8 +21,13 @@
       <ion-button (click)="showEpisodes(character.episode)">
       Episodios
       </ion-button>
+      <ion-button (click)="showLocation(locations.location)">
+        Locacion
+        </ion-button>
 
       <app-morric-card *ngFor="let episode of episodes" [episode]="episode"></app-morric-card>
+
+      <app-locacion-card *ngFor="let location of locations" [location]="location"></app-locacion-card>
       
       <br>
     </ion-card-content>
