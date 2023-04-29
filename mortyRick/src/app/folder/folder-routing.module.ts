@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: FolderPage
+  },
+  {
+    path: 'addCharacter',
+    loadChildren: () => import('../addcharacter/addcharacter.module').then( m => m.AddcharacterPageModule)
   }
 ];
 

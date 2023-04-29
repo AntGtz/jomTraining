@@ -1,6 +1,6 @@
 import { Component, OnInit,inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
-import { RicmorEpisodesService } from '../services/ricmor-episodes.service';
+import { EpisodeService } from '../services/episode.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,19 +16,19 @@ export class EpisodiosPage implements OnInit {
   search: string = ''
   private activatedRoute = inject(ActivatedRoute);
   
-  constructor(public RicmorEpisodesService: RicmorEpisodesService) {}
+  constructor(public EpisodeService: EpisodeService) {}
 
   async ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
     console.log(this.rickmorDetailsepi)
-    this.rickmorDetailsepi = await this.getrickmorDetailsepi();
+    //this.rickmorDetailsepi = await this.getEpisode();
   }
 
-  async getrickmorDetailsepi() {
-    let data = await firstValueFrom(this.RicmorEpisodesService.getmortymorty())
-    console.log(data);
-    return data.results;
-  }
+  // async getEpisode() {
+  //   let data = await firstValueFrom(this.EpisodeService.read())
+  //   console.log(data);
+  //   return data;
+  // }
 
 }
 

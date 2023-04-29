@@ -18,14 +18,13 @@
       <ion-card-subtitle>Especie: {{ character.species }}</ion-card-subtitle>
       <ion-card-subtitle>Tipo: {{ character.type }}</ion-card-subtitle>
       <ion-card-subtitle>Origen: {{ character.origin.name }}</ion-card-subtitle>
-      <ion-button class="mybutton" (click)="goToPage()">
-      Mostrar mas detalles
-    </ion-button>
-    <br>
-    <ion-button class="mybutton2" (click)="goToPage2()">
-      Agregar Personaje
-    </ion-button>
+      <ion-button (click)="showEpisodes(character.episode)">
+      Episodios
+      </ion-button>
 
-  </ion-card-content>
+      <app-morric-card *ngFor="let episode of episodes" [episode]="episode"></app-morric-card>
+      
+      <br>
+    </ion-card-content>
 </ion-card>
 </div>

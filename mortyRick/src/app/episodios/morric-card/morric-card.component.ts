@@ -1,8 +1,10 @@
 import { Component, Input,OnInit } from '@angular/core';
-import { RicmorEpisodesService } from './../../services/ricmor-episodes.service';
+import { EpisodeService } from '../../services/episode.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Episode } from 'src/app/models/episode.model';
+import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-morric-card',
   templateUrl: './morric-card.component.html',
@@ -10,8 +12,11 @@ import { Location } from '@angular/common';
 })
 export class MorricCardComponent  implements OnInit {
   @Input() location: any;
+  @Input() episode: any;
+
+  public episodeData: Episode = {};
   constructor(
-    private RicmorEpisodesService: RicmorEpisodesService,
+    private EpisodeService: EpisodeService,
     private loadCtrl: LoadingController,
     private router: Router,
     private location2: Location
@@ -21,6 +26,12 @@ export class MorricCardComponent  implements OnInit {
     this.location2.back();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getEpisode();
+  }
+
+  async getEpisode() {
+    this.episodeData = await firstValueFrom(this.EpisodeService.read(this.episode));
+  }
 
 }

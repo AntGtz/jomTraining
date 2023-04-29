@@ -1,6 +1,7 @@
+import { Character } from './../models/character.model';
+import { CharacterService } from './../services/character.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RicmorService } from '../services/ricmor.service';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 
 @Component({
@@ -10,23 +11,21 @@ import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 })
 export class FolderPage implements OnInit {
 
-  rickmorDetails: any;
+  characters: Character[] = [];
   public folder!: string;
   
   search: string = ''
   private activatedRoute = inject(ActivatedRoute);
   
-  constructor(public RicmorService: RicmorService) {}
+  constructor(public CharacterService: CharacterService) {}
 
   async ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    console.log(this.rickmorDetails)
-    this.rickmorDetails = await this.getrickmorDetails();
+    this.characters = await this.getrickmorDetails();
   }
 
   async getrickmorDetails() {
-    let data = await firstValueFrom(this.RicmorService.getrickrick())
-    console.log(data);
+    let data = await firstValueFrom(this.CharacterService.getAll())
     return data.results;
   }
 }

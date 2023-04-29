@@ -1,7 +1,8 @@
+import { CharacterService } from './../../services/character.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { RicmorService } from './../../services/ricmor.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Episode } from 'src/app/models/episode.model';
 
 @Component({
   selector: 'app-ricmor-card',
@@ -12,11 +13,12 @@ export class RicmorCardComponent  implements OnInit {
 
   @Input() character: any;
   constructor(
-    private RicmorService: RicmorService,
+    private CharacterService: CharacterService,
     private loadCtrl: LoadingController,
     private router: Router
     ) { }
 
+    episodes: Episode[] = [];
     goToPage() {
       this.router.navigate(['/episodios/']);
     }
@@ -27,6 +29,15 @@ export class RicmorCardComponent  implements OnInit {
   
 
   ngOnInit() {}
+
+  showEpisodes(episodes: []) {
+    if(this.episodes.length > 0){
+      this.episodes = [];
+    }else {
+      this.episodes = episodes;
+    }
+    console.log(this.episodes)
+  }
 
 }
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RicmorEpisodesService } from './ricmor-episodes.service';
+import { EpisodeService } from './episode.service';
 
 describe('RicmorEpisodesService', () => {
-  let service: RicmorEpisodesService;
+  let service: EpisodeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RicmorEpisodesService);
+    service = TestBed.inject(EpisodeService);
   });
 
   it('should be created', () => {

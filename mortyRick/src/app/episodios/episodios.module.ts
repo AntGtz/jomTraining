@@ -15,7 +15,8 @@ import { EpisodiosPage } from './episodios.page';
     IonicModule,
     EpisodiosPageRoutingModule
   ],
-  declarations: [EpisodiosPage,MorricCardComponent]
+  declarations: [EpisodiosPage,MorricCardComponent, MorricCardComponent],
+  exports: [MorricCardComponent]
 })
 export class EpisodiosPageModule {}
 export class ComponentsModule { }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { rickrick } from '../models/rickrick.model';
+import { Character } from '../models/character.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RicmorService {
+export class CharacterService {
 
   apiUrl: string = 'https://rickandmortyapi.com/api';
   httpOptions = {
@@ -21,12 +21,8 @@ export class RicmorService {
   ) { }
 
   
-  getrickrick(): Observable<any> {
+  getAll(): Observable<any> {
     return this.httpClient.get(`${this.apiUrl}/character/`, this.httpOptions)
   }
 
-  doubleId(id: number) {
-    id = id * 2;
-    return id;
-  }
 }
