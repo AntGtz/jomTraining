@@ -1,36 +1,35 @@
 <div class="center">
-  <ion-card>
-  
-    <ion-card-header>
-        <ion-card-title>{{ character.name }}</ion-card-title>
-        <ion-card-subtitle>{{ character.id }}</ion-card-subtitle>
-        
-  
-    </ion-card-header>
-  
-  
-    <ion-card-content>
-     
-        <ion-img [src]="character.image"></ion-img>
-        
-        <p>Genero: {{ character.gender | titlecase }}</p>
-        <ion-card-subtitle  [ngStyle]="{'color': character.status === 'Alive' ? 'green' : 'red'}">{{character.status}}</ion-card-subtitle>
-        
-        <ion-card-subtitle>Especie: {{ character.species }}</ion-card-subtitle>
-        <ion-card-subtitle>Tipo: {{ character.type }}</ion-card-subtitle>
-        <ion-card-subtitle>Origen: {{ character.origin.name }}</ion-card-subtitle>
-        <ion-button (click)="showEpisodes(character.episode)">
-        Episodios
+<ion-card>
+
+  <ion-card-header>
+      <ion-card-title>{{ character.name }}</ion-card-title>
+      <ion-card-subtitle>{{ character.id }}</ion-card-subtitle>
+      
+
+  </ion-card-header>
+
+
+  <ion-card-content>
+   
+      <ion-img [src]="character.image"></ion-img>
+      
+      <p>Genero: {{ character.gender | titlecase }}</p>
+      <ion-card-subtitle>Estado: {{ character.status }}</ion-card-subtitle>
+      <ion-card-subtitle>Especie: {{ character.species }}</ion-card-subtitle>
+      <ion-card-subtitle>Tipo: {{ character.type }}</ion-card-subtitle>
+      <ion-card-subtitle>Origen: {{ character.origin.name }}</ion-card-subtitle>
+      <ion-button (click)="showEpisodes(character.episode)">
+      Episodios
+      </ion-button>
+      <ion-button (click)="showLocation(locations.location)">
+        Locacion
         </ion-button>
-        <ion-button (click)="showLocation()">
-          Locacion
-          </ion-button>
-  
-        <app-morric-card *ngFor="let episode of episodes" [episode]="episode"></app-morric-card>
-  
-        <app-locacion-card *ngIf="location" [location]="character.location.url"></app-locacion-card>
-        
-        <br>
-      </ion-card-content>
-  </ion-card>
-  </div>
+
+      <app-morric-card *ngFor="let episode of episodes" [episode]="episode"></app-morric-card>
+
+      <app-locacion-card *ngFor="let location of locations" [location]="location"></app-locacion-card>
+      
+      <br>
+    </ion-card-content>
+</ion-card>
+</div>
