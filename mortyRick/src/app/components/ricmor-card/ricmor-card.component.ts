@@ -14,7 +14,7 @@ export class RicmorCardComponent  implements OnInit {
   constructor() { }
 
     episodes: Episode[] = [];
-    location: Location[] = [];
+    location: boolean = false
 
   ngOnInit() {}
 
@@ -27,13 +27,8 @@ export class RicmorCardComponent  implements OnInit {
     console.log(this.episodes)
   }
 
-  showLocation(location: []) {
-    if(this.location.length > 0){
-      this.location = [];
-    }else {
-      this.location = location;
-    }
-    console.log(this.location)
+  showLocation() {
+    this.location = !this.location;
   }
 
 
