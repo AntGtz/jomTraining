@@ -9,5 +9,10 @@
 
 <ion-content [fullscreen]="true" >  
   <ion-button [routerLink]="['./addCharacter']">Añadir personaje</ion-button>
-  <app-ricmor-card *ngFor="let character of characters" [character] ="character"></app-ricmor-card>
+  <swiper-container navigation="true">
+    <swiper-slide *ngFor="let character of characters">
+      <app-ricmor-card [character]="character"></app-ricmor-card>
+    </swiper-slide>
+  </swiper-container>
+
 </ion-content>

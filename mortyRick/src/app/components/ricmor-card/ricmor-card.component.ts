@@ -1,35 +1,40 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Episode } from 'src/app/models/episode.model';
 import { Location } from 'src/app/models/location.model';
-import Swiper from 'swiper';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HammerModule } from '@angular/platform-browser';
+  // import Swiper JS
+
 
 @Component({
   selector: 'app-ricmor-card',
   templateUrl: './ricmor-card.component.html',
   styleUrls: ['./ricmor-card.component.scss'],
 })
+
+
+
 export class RicmorCardComponent  implements OnInit {
-
-
-
+  
+  @NgModule({
+    imports: [
+      BrowserModule,
+      HammerModule
+    ],
+    // ...
+  })
+ 
    // cambia esto según la lógica de tu aplicación
   @Input() character: any;
   @Input() locations: any;
-  constructor() { }
+  constructor() {  }
 
     episodes: Episode[] = [];
-    location: boolean = false
-
-  ngOnInit() {
-
-    const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 30,
-      spaceBetween: 30,
-      centeredSlides: true,
-      // y así sucesivamente
-    });
-
+    location: boolean = false 
+  ngOnInit() { 
   }
+
 
   showEpisodes(episodes: []) {
     if(this.episodes.length > 0){
