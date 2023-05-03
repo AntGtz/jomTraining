@@ -33,6 +33,8 @@ export class RicmorCardComponent  implements OnInit {
     episodes: Episode[] = [];
     location: boolean = false 
   ngOnInit() { 
+
+    
   }
 
 
@@ -48,6 +50,7 @@ export class RicmorCardComponent  implements OnInit {
   showLocation() {
     this.location = !this.location;
   }
+
 
 }
 
