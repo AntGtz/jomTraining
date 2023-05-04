@@ -4,9 +4,26 @@ ion-menu-button {
 }
 
 .ion-buttonX{
+  --background: #000000;
+  --color: #ffffff;
+  z-index: 1;
+  font-size: 40px;
+  padding: 1px 1px;
+  
+}
+
+.circle{
   position: relative;
-  top: 60px;
-  left: 950px;
+  top: 120px;
+  left: 890px;
+  
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(255, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
