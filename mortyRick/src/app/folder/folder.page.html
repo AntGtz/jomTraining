@@ -12,15 +12,17 @@
 
 
 
-  <swiper-container pagination="true" >
+  <swiper-container pagination="true">
 
   <swiper-slide *ngFor="let character of characters">
-
-      <div class="circle"  (click)="dropElement(character)">X
+    
+      <div class="circle"  (click)="dropElement(character)" >
+        X
       <!--<ion-button class="ion-buttonX"(click)="dropElement(character)">X</ion-button>-->
       </div>
       
     <app-ricmor-card [character]="character"></app-ricmor-card>
+
   </swiper-slide>
 
   </swiper-container>
