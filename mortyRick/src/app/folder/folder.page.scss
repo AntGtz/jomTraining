@@ -4,23 +4,34 @@ ion-menu-button {
 }
 
 .ion-buttonX{
-  --background: #000000;
+  --background: transparent;
   --color: #ffffff;
   z-index: 1;
   font-size: 40px;
-  padding: 1px 1px;
+  border: none;
+  color: #fff; /* Este color es solo un ejemplo, puedes cambiarlo a tu gusto */
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
   
+}
+
+.circle:hover {
+  background-color: rgb(110, 110, 110);
+  color: rgb(255, 255, 255);
+  border: 15px solid #dbdbdb;
 }
 
 .circle{
   position: relative;
   top: 120px;
   left: 890px;
-  
+  color: #fff;
+  font-size: 50px;
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(110, 110, 110);
   display: flex;
   justify-content: center;
   align-items: center;
