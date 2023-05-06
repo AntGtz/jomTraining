@@ -23,6 +23,9 @@ export class RicmorCardComponent  implements OnInit {
   marker!: google.maps.Marker;
   map!: google.maps.Map;
 
+  
+  currentMarker: google.maps.Marker | null = null;
+  
   @NgModule({
     imports: [
       BrowserModule,
@@ -52,13 +55,25 @@ export class RicmorCardComponent  implements OnInit {
         title: 'Mi ubicación'
       });
 
+//      google.maps.event.addListener(map, 'click', (event: { latLng: any; }) => {
+ //       const marker = new google.maps.Marker({
+   //       position: event.latLng,
+     //     map: map,
+       //   title: 'Nuevo marcador'
+      //  });
+        
+     // });
+
       google.maps.event.addListener(map, 'click', (event: { latLng: any; }) => {
+        if (this.currentMarker) {
+          this.currentMarker.setMap(null);
+        }
         const marker = new google.maps.Marker({
           position: event.latLng,
           map: map,
           title: 'Nuevo marcador'
         });
-        
+        this.currentMarker = marker;
       });
       
 
