@@ -36,12 +36,12 @@ export class RicmorCardComponent  implements OnInit {
 
     ngOnInit(): void {
       const map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.603722, lng: -58.381592 },
+        center: {  lat: 22.1566, lng: -100.9855 },
         zoom: 12
       });
   
       const marker = new google.maps.Marker({
-        position: { lat: -34.603722, lng: -58.381592 },
+        position: {  lat: 22.1566, lng: -100.9855 },
         map: map,
         title: 'Mi ubicación'
       });
