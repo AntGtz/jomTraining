@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,ViewChild, ElementRef  } from '@angular/core';
 import { Episode } from 'src/app/models/episode.model';
 import { Location } from 'src/app/models/location.model';
 import { NgModule } from '@angular/core';
@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
   // import Swiper JS
   declare const google: any;
-
+  
 @Component({
   selector: 'app-ricmor-card',
   templateUrl: './ricmor-card.component.html',
@@ -16,7 +16,13 @@ import { HammerModule } from '@angular/platform-browser';
 
 
 export class RicmorCardComponent  implements OnInit {
-  
+
+
+  @ViewChild('mapContainer', { static: false }) gmap!: ElementRef;
+
+  marker!: google.maps.Marker;
+  map!: google.maps.Map;
+
   @NgModule({
     imports: [
       BrowserModule,
@@ -45,7 +51,21 @@ export class RicmorCardComponent  implements OnInit {
         map: map,
         title: 'Mi ubicación'
       });
+
+      google.maps.event.addListener(map, 'click', (event: { latLng: any; }) => {
+        const marker = new google.maps.Marker({
+          position: event.latLng,
+          map: map,
+          title: 'Nuevo marcador'
+        });
+        
+      });
+      
+
     }
+
+
+
 
 
   showEpisodes(episodes: []) {
