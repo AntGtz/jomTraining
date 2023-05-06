@@ -1,21 +1,23 @@
 import { Character } from './../models/character.model';
 import { CharacterService } from './../services/character.service';
-import { Component, inject, OnInit , ViewChild} from '@angular/core';
+import { Component, ElementRef, inject, OnInit , ViewChild} from '@angular/core';
 import { ActivatedRoute , } from '@angular/router';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
+import { CapacitorGoogleMaps } from '@capacitor-community/google-maps';
 import Swiper from 'swiper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { Capacitor } from '@capacitor/core';
+
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
 })
 export class FolderPage implements OnInit {
-    
+  
   characters: Character[] = [];
   pageSize: number = 2; // número de elementos por página
   swiper: any;
-  
 
   public folder!: string;
 
@@ -27,9 +29,8 @@ export class FolderPage implements OnInit {
   async ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.characters = await this.getrickmorDetails();
-    
   }
-  
+
   async getrickmorDetails() {
     let data = await firstValueFrom(this.CharacterService.getAll())
     return data.results;

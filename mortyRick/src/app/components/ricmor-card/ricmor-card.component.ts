@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
   // import Swiper JS
-
+  declare const google: any;
 
 @Component({
   selector: 'app-ricmor-card',
@@ -32,10 +32,20 @@ export class RicmorCardComponent  implements OnInit {
 
     episodes: Episode[] = [];
     location: boolean = false 
-  ngOnInit() { 
 
-    
-  }
+
+    ngOnInit(): void {
+      const map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.603722, lng: -58.381592 },
+        zoom: 12
+      });
+  
+      const marker = new google.maps.Marker({
+        position: { lat: -34.603722, lng: -58.381592 },
+        map: map,
+        title: 'Mi ubicación'
+      });
+    }
 
 
   showEpisodes(episodes: []) {

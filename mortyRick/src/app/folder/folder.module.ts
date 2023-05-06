@@ -9,14 +9,18 @@ import { FolderPageRoutingModule } from "./folder-routing.module";
 import { FolderPage } from './folder.page';
 import { ComponentsModule } from '../components/components.module';
 
+
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     FormsModule,
+    
     IonicModule,
     FolderPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    
+    
   ],
   declarations: [FolderPage]
 })
