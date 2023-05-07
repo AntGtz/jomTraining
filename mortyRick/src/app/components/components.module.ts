@@ -5,6 +5,7 @@ import { RicmorCardComponent } from './ricmor-card/ricmor-card.component';
 import { EpisodiosPageModule } from '../episodios/episodios.module';
 import { LocacionCardComponent } from '../locacion/locacion-card/locacion-card.component';
 import { LocationsModule } from '../locacion/locations.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { LocationsModule } from '../locacion/locations.module';
     CommonModule,
     IonicModule,
     EpisodiosPageModule,
-    LocationsModule
+    LocationsModule,
+    FormsModule,
   ],
   exports: [RicmorCardComponent],
   

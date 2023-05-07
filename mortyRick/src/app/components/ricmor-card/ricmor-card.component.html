@@ -21,7 +21,10 @@
   <ion-card>
   
     <ion-card-header>
+      
         <ion-card-title>{{ character.name }}</ion-card-title>
+        <input type="text" [(ngModel)]="lat" placeholder="Latitud">
+        <input type="text" [(ngModel)]="lng" placeholder="Longitud">
         <ion-card-subtitle>{{ character.id }}</ion-card-subtitle>
         
   

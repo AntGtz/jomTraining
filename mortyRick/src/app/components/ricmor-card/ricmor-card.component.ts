@@ -1,7 +1,7 @@
 import { Component, Input, OnInit,ViewChild, ElementRef  } from '@angular/core';
 import { Episode } from 'src/app/models/episode.model';
 import { Location } from 'src/app/models/location.model';
-import { NgModule } from '@angular/core';
+import { NgModule , ChangeDetectorRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
   // import Swiper JS
@@ -22,7 +22,9 @@ export class RicmorCardComponent  implements OnInit {
 
   marker!: google.maps.Marker;
   map!: google.maps.Map;
-
+  markerPosition!: string;
+  lat?: any;
+  lng?: any;
   
   currentMarker: google.maps.Marker | null = null;
   
@@ -37,7 +39,7 @@ export class RicmorCardComponent  implements OnInit {
    // cambia esto según la lógica de tu aplicación
   @Input() character: any;
   @Input() locations: any;
-  constructor() {  }
+  constructor(private cdRef: ChangeDetectorRef) {  }
 
     episodes: Episode[] = [];
     location: boolean = false 
@@ -71,12 +73,20 @@ export class RicmorCardComponent  implements OnInit {
         const marker = new google.maps.Marker({
           position: event.latLng,
           map: map,
-          title: 'Nuevo marcador'
+          title: 'Nuevo marcador',
+          
         });
         this.currentMarker = marker;
+        this.lat = event.latLng.lat();
+        this.lng = event.latLng.lng();
+        this.markerPosition = `Latitud: ${event.latLng.lat()}, Longitud: ${event.latLng.lng()}`;
+        console.log(this.markerPosition)
+      
+        this.cdRef.detectChanges(); // Para actualizar la vista
+        
+
       });
       
-
     }
 
 
