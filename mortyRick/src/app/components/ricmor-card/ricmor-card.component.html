@@ -23,8 +23,9 @@
     <ion-card-header>
       
         <ion-card-title>{{ character.name }}</ion-card-title>
-        <input type="text" #latInput [(ngModel)]="latitude">
-        <input type="text" #lngInput [(ngModel)]="longitude">
+        <ion-input label="Latitud" label-placement="floating" fill="outline" placeholder="Enter text"value={{LocationService.lat}}></ion-input>
+        <br><br>
+        <ion-input label="Longitud" label-placement="floating" fill="outline" placeholder="Enter text"value={{LocationService.lng}}></ion-input>
         <ion-card-subtitle>{{ character.id }}</ion-card-subtitle>
         
   

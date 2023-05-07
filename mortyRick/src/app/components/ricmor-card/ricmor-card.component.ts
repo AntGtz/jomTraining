@@ -5,6 +5,7 @@ import { NgModule , ChangeDetectorRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
 import { NgModel } from '@angular/forms';
+import { LocationServiceService } from 'src/app/services/location-service.service';
   // import Swiper JS
   declare const google: any;
   
@@ -19,15 +20,16 @@ import { NgModel } from '@angular/forms';
 export class RicmorCardComponent  implements OnInit {
 
 
-  @ViewChild('mapContainer', { static: false }) gmap!: ElementRef;
-
-  @ViewChild('latInput', { read: NgModel }) latModel!: NgModel;
-  @ViewChild('lngInput', { read: NgModel }) lngModel!: NgModel;
+  //@ViewChild('mapContainer', { static: false }) gmap!: ElementRef;
 
   marker!: google.maps.Marker;
   map!: google.maps.Map;
   markerPosition!: string;
+
+ latitude: any;
+ longitude: any;
   
+
   currentMarker: google.maps.Marker | null = null;
   
   @NgModule({
@@ -35,42 +37,43 @@ export class RicmorCardComponent  implements OnInit {
       BrowserModule,
       HammerModule
     ],
-    // ...
+    
   })
  
-   // cambia esto según la lógica de tu aplicación
   @Input() character: any;
   @Input() locations: any;
-  latitude: any;
-  longitude: any;
-  constructor(private cdRef: ChangeDetectorRef) {  }
+ 
+  constructor(private cdRef: ChangeDetectorRef, public LocationService: LocationServiceService) { 
+    this.latitude = 0;
+    this.longitude = 0;
+   }
 
     episodes: Episode[] = [];
     location: boolean = false 
-
-
+   
     ngOnInit(): void {
       const map = new google.maps.Map(document.getElementById('map'), {
         center: {  lat: 22.1566, lng: -100.9855 },
         zoom: 12
       });
   
-      const marker = new google.maps.Marker({
-        position: {  lat: 22.1566, lng: -100.9855 },
-        map: map,
-        title: 'Mi ubicación'
-      });
+      // const marker = new google.maps.Marker({
+      //   position: {  lat: 22.1566, lng: -100.9855 },
+      //   map: map,
+      //   title: 'Mi ubicación'
+      // });
 
-//      google.maps.event.addListener(map, 'click', (event: { latLng: any; }) => {
- //       const marker = new google.maps.Marker({
-   //       position: event.latLng,
-     //     map: map,
-       //   title: 'Nuevo marcador'
-      //  });
+//       google.maps.event.addListener(map, 'click', (event: { latLng: any; }) => {
+//         const marker = new google.maps.Marker({
+//           position: event.latLng,
+//           map: map,
+//           title: 'Nuevo marcador'
+//        });
         
-     // });
+//       });
 
       google.maps.event.addListener(map, 'click', (event: { latLng: any; }) => {
+        
         if (this.currentMarker) {
           this.currentMarker.setMap(null);
         }
@@ -80,6 +83,7 @@ export class RicmorCardComponent  implements OnInit {
           title: 'Nuevo marcador',
           
         });
+        
         this.currentMarker = marker;
         
 
@@ -92,20 +96,28 @@ export class RicmorCardComponent  implements OnInit {
           this.latitude = lat;
           this.longitude = lng;
         }
-        console.log(this.latitude)
-        console.log(this.longitude)
 
+        this.updateLocation(lat, lng);
+
+        console.log("Latitud: ", lat);
+        console.log(" Longitud: ", lng);
 
         this.cdRef.detectChanges(); // Para actualizar la vista
         
-
-      });
       
+      });
+      this.cdRef.detectChanges();
     }
 
-
-
-
+    updateLocation(lat: any, lng: any) {
+      this.LocationService.updateLocation2(lat, lng);
+      this.latitude = lat;
+      this.longitude = lng;
+      this.cdRef.detectChanges();
+      console.log("Comprobar: "+this.latitude)
+      console.log("Comprobar: "+this.longitude)
+    }
+ 
 
   showEpisodes(episodes: []) {
     if(this.episodes.length > 0){
@@ -118,9 +130,18 @@ export class RicmorCardComponent  implements OnInit {
 
   showLocation() {
     this.location = !this.location;
+
   }
 
 
 }
 
+export class LocationService {
+  lat: number = 0;
+  lng: number = 0;
 
+  updateLocation(lat: number, lng: number) {
+    this.lat = lat;
+    this.lng = lng;
+  }
+}
