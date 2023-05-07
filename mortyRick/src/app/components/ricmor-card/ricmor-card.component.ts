@@ -4,6 +4,7 @@ import { Location } from 'src/app/models/location.model';
 import { NgModule , ChangeDetectorRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HammerModule } from '@angular/platform-browser';
+import { NgModel } from '@angular/forms';
   // import Swiper JS
   declare const google: any;
   
@@ -20,11 +21,12 @@ export class RicmorCardComponent  implements OnInit {
 
   @ViewChild('mapContainer', { static: false }) gmap!: ElementRef;
 
+  @ViewChild('latInput', { read: NgModel }) latModel!: NgModel;
+  @ViewChild('lngInput', { read: NgModel }) lngModel!: NgModel;
+
   marker!: google.maps.Marker;
   map!: google.maps.Map;
   markerPosition!: string;
-  lat?: any;
-  lng?: any;
   
   currentMarker: google.maps.Marker | null = null;
   
@@ -39,6 +41,8 @@ export class RicmorCardComponent  implements OnInit {
    // cambia esto según la lógica de tu aplicación
   @Input() character: any;
   @Input() locations: any;
+  latitude: any;
+  longitude: any;
   constructor(private cdRef: ChangeDetectorRef) {  }
 
     episodes: Episode[] = [];
@@ -77,11 +81,21 @@ export class RicmorCardComponent  implements OnInit {
           
         });
         this.currentMarker = marker;
-        this.lat = event.latLng.lat();
-        this.lng = event.latLng.lng();
+        
+
+
         this.markerPosition = `Latitud: ${event.latLng.lat()}, Longitud: ${event.latLng.lng()}`;
         console.log(this.markerPosition)
-      
+        const lat = marker.getPosition()?.lat();
+        const lng = marker.getPosition()?.lng();
+        if (lat && lng) {
+          this.latitude = lat;
+          this.longitude = lng;
+        }
+        console.log(this.latitude)
+        console.log(this.longitude)
+
+
         this.cdRef.detectChanges(); // Para actualizar la vista
         
 
