@@ -1,10 +1,16 @@
 .swiper-container {
-    height: 400px;
-    width: 100%;
-    
-  }
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px; /* Altura de la sección del Swiper */
+}
+
+.swiper-slide {
+  text-align: center;
+}
+
+ion-card {
+  width: 500px; /* ancho personalizado */
+  margin: 0 auto; /* establecer margen izquierdo y derecho automáticos */
+  display: block; /* establecer display a bloque para ocupar todo el ancho disponible */
+}

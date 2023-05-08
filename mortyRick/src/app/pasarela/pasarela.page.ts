@@ -11,13 +11,16 @@ export class PasarelaPage implements OnInit {
   imageArray: any[] = [];
   mySwiper!: Swiper;
   constructor() { }
+
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
+
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageArray.push(e.target.result);
       };
+
       reader.readAsDataURL(files[i]);
     }
     this.selectedFiles = Array.from(files);
@@ -26,9 +29,6 @@ export class PasarelaPage implements OnInit {
     this.selectedFiles.splice(index, 1);
     this.imageArray.splice(index, 1);
     this.mySwiper.removeSlide(index);
-    if (this.imageArray.length < this.mySwiper.slides.length) {
-      this.mySwiper.removeSlide(this.imageArray.length);
-    }
     this.mySwiper.update();
   }
 
@@ -37,7 +37,6 @@ export class PasarelaPage implements OnInit {
   ngAfterViewInit() {
  
     this.mySwiper = new Swiper('.swiper-container', {
-      centeredSlides: true,
     });
   }
 
