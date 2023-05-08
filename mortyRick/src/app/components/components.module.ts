@@ -6,11 +6,12 @@ import { EpisodiosPageModule } from '../episodios/episodios.module';
 import { LocacionCardComponent } from '../locacion/locacion-card/locacion-card.component';
 import { LocationsModule } from '../locacion/locations.module';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [RicmorCardComponent],
   imports: [
+    RouterModule,
     CommonModule,
     IonicModule,
     EpisodiosPageModule,

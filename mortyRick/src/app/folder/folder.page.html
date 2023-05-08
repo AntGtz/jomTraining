@@ -10,6 +10,7 @@
 <app-map-slide></app-map-slide>
 <ion-content [fullscreen]="true" >  
   <ion-button [routerLink]="['./addCharacter']">Añadir personaje</ion-button>
+  <ion-button [routerLink]="['./pasarela']">Añadir Fotografias</ion-button>
   <swiper-container pagination="true">
   <swiper-slide *ngFor="let character of characters">
       <div class="circle"  (click)="dropElement(character)" >

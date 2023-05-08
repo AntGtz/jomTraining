@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'addcharacter',
     loadChildren: () => import('./addcharacter/addcharacter.module').then( m => m.AddcharacterPageModule)
+  },
+  {
+    path: 'pasarela',
+    loadChildren: () => import('./pasarela/pasarela.module').then( m => m.PasarelaPageModule)
   }
 ];
 
