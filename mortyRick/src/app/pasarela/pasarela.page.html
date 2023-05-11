@@ -6,22 +6,20 @@
 
 <ion-content [fullscreen]="true">
   <br><br>
-  <!-- <input type="file" (change)="onFileSelected($event)" accept="image/*" [(ngModel)]="selectedFiles"> -->
-  <div>
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple>
-    <div *ngFor="let image of imageArray; let i = index">
-      <!-- <img [src]="image" width="100" height="100"> -->
-      <!-- <button (click)="removeImage(i)">Eliminar</button> -->
-    </div>
-  </div>
+
   <ion-card>
-  <swiper-container pagination="true" class="swiper-container">
-   
+  <swiper-container pagination="true" class="swiper-container" #mySwiper>
+
     <swiper-slide *ngFor="let image of imageArray; let i = index" class="swiper-slide"> 
-    
       <img [src]="image" width="400" height="400">
       <ion-button (click)="removeImage(i)">Eliminar</ion-button>
       
+  </swiper-slide>
+  <swiper-slide>
+    <button (click)="fileInput.click()" class="circular-button">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" multiple style="display:none;">
   </swiper-slide>
   </swiper-container>
   </ion-card>

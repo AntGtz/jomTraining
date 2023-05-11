@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Swiper from 'swiper';
 
 @Component({
@@ -7,14 +7,15 @@ import Swiper from 'swiper';
   styleUrls: ['./pasarela.page.scss'],
 })
 export class PasarelaPage implements OnInit {
+  showMainButton: boolean = true;
   selectedFiles: File[] = [];
   imageArray: any[] = [];
-  mySwiper!: Swiper;
+  @ViewChild('mySwiper') swiper!: ElementRef;
   constructor() { }
 
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
-
+    this.showMainButton = false;
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
@@ -28,16 +29,20 @@ export class PasarelaPage implements OnInit {
   removeImage(index: number) {
     this.selectedFiles.splice(index, 1);
     this.imageArray.splice(index, 1);
-    this.mySwiper.removeSlide(index);
-    this.mySwiper.update();
+    this.swiper.nativeElement.swiper.update();
+    
+    setTimeout(() => {
+      this.updateSwiper();
+    });
+
+  }
+
+  updateSwiper() {
+    const swiper = this.swiper.nativeElement.swiper;
+    swiper.update();
   }
 
   ngOnInit() {
-  }
-  ngAfterViewInit() {
- 
-    this.mySwiper = new Swiper('.swiper-container', {
-    });
   }
 
 }
