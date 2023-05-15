@@ -11,8 +11,12 @@
   <swiper-container pagination="true" class="swiper-container" #mySwiper>
 
     <swiper-slide *ngFor="let image of imageArray; let i = index" class="swiper-slide"> 
-      <img [src]="image" width="400" height="400">
-      <ion-button (click)="removeImage(i)">Eliminar</ion-button>
+      <div class="image-container">
+        <img [src]="image" width="400" height="400">
+        <button (click)="removeImage(i)" class="delete-button">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </div>
       
   </swiper-slide>
   <swiper-slide>

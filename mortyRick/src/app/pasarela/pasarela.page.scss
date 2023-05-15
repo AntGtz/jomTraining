@@ -2,25 +2,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px; /* Altura de la sección del Swiper */
-  padding-right: 100px;
-  overflow: hidden; 
+  height: 50vh; /* Altura de la sección del Swiper */
+  text-align: center;
 }
 
-.swiper-slide {
+.swiper-slide img {
   text-align: center;
-  margin-right: 20px;
+  display: flex;
+  justify-content: center; /* Centra la imagen en el slide */
+  align-items: center;
+  width: 100%; /* Ancho del slide ajustado automáticamente */
+  height: 100%;
+  position: relative;
+  object-fit: contain;
+  
+  
 }
 
 ion-card {
-  width: 500px; /* ancho personalizado */
-  margin: 0 auto; /* establecer margen izquierdo y derecho automáticos */
-  display: block; /* establecer display a bloque para ocupar todo el ancho disponible */
+  width: 80vw; /* Ancho de la tarjeta ajustado automáticamente */
+  margin: 0 auto;
+  display: block;
 }
 
 .circular-button {
-  width: 200px;
-  height: 200px;
+  width: 20vw; /* Ancho del botón circular ajustado automáticamente */
+  height: 20vw; /* Altura del botón circular ajustado automáticamente */
   border-radius: 50%;
   background-color: #007bff;
   color: #fff;
@@ -28,13 +35,12 @@ ion-card {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  font-size: 150px;
+  font-size: 10vw; /* Tamaño de fuente del botón circular ajustado automáticamente */
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  
 }
 
 .circular-button input[type="file"] {
@@ -44,4 +50,27 @@ ion-card {
   left: 0;
   opacity: 0;
   cursor: pointer;
+}
+
+.delete-button {
+  position: absolute;
+  top: 6%;
+  right: 1%;
+  z-index: 30;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: #5b5b5b;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 300%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  pointer-events: auto;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
 }

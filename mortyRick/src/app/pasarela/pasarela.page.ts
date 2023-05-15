@@ -13,7 +13,7 @@ export class PasarelaPage implements OnInit {
   @ViewChild('mySwiper') swiper!: ElementRef;
   constructor() { }
 
-  onFileSelected(event: any) {
+ onFileSelected(event: any) {
     const files: FileList = event.target.files;
     this.showMainButton = false;
     for (let i = 0; i < files.length; i++) {
@@ -26,20 +26,22 @@ export class PasarelaPage implements OnInit {
     }
     this.selectedFiles = Array.from(files);
   }
-  removeImage(index: number) {
+
+
+  async removeImage(index: number) {
     this.selectedFiles.splice(index, 1);
     this.imageArray.splice(index, 1);
     this.swiper.nativeElement.swiper.update();
     
-    setTimeout(() => {
-      this.updateSwiper();
-    });
-
+    // setTimeout(() => {
+    //   this.updateSwiper();
+    // });
+   await this.updateSwiper();
   }
 
-  updateSwiper() {
+  async updateSwiper() {
     const swiper = this.swiper.nativeElement.swiper;
-    swiper.update();
+    await swiper.update();
   }
 
   ngOnInit() {
