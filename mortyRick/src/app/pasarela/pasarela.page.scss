@@ -11,12 +11,16 @@
   display: flex;
   justify-content: center; /* Centra la imagen en el slide */
   align-items: center;
-  width: 100%; /* Ancho del slide ajustado automáticamente */
-  height: 100%;
+
   position: relative;
   object-fit: contain;
+  width: 400px;
+  height: 400px;
   
-  
+}
+
+.swiper-slide:first-child img {
+  border: 5px solid rgb(255, 0, 0);
 }
 
 ion-card {
@@ -73,4 +77,12 @@ ion-card {
 .image-container {
   position: relative;
   display: inline-block;
+  border: 2px dashed #ccc;
+}
+
+
+
+
+.image-container.drag-over {
+  border-color: #000;
 }

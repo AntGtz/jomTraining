@@ -8,19 +8,19 @@
   <br><br>
 
   <ion-card>
-  <swiper-container pagination="true" class="swiper-container" #mySwiper>
-
+  <swiper-container pagination="true" [slidesPerView]="views" class="swiper-container" #mySwiper>
+    
     <swiper-slide *ngFor="let image of imageArray; let i = index" class="swiper-slide"> 
-      <div class="image-container">
+      <div class="image-container" draggable="true">
         <img [src]="image" width="400" height="400">
         <button (click)="removeImage(i)" class="delete-button">
           <ion-icon name="close"></ion-icon>
         </button>
       </div>
-      
   </swiper-slide>
+
   <swiper-slide>
-    <button (click)="fileInput.click()" class="circular-button">
+    <button (click)="fileInput.click()" class="circular-button" (click)="updateConsole()">
       <ion-icon name="add"></ion-icon>
     </button>
     <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" multiple style="display:none;">
