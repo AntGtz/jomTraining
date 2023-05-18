@@ -6,6 +6,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./pasarela.page.scss'],
 })
 export class PasarelaPage implements OnInit {
+
+  
   showMainButton: boolean = true; // variable para darle funcion al boton de añadir archivos
   views: number = 1;
   selectedFiles: File[] = []; //guardar archivos seleccionados por el usuario
@@ -13,24 +15,34 @@ export class PasarelaPage implements OnInit {
   @ViewChild('mySwiper') swiper!: ElementRef;
   constructor() { }
 
-async onFileSelected(event: any) {
-  const files: FileList = event.target.files;
-  this.showMainButton = false;
-
-  for (let i = 0; i < files.length; i++) {
+  async onFileSelected(event: any) {
+    const files: FileList = event.target.files;
+    this.showMainButton = false;
     
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      const imageUrl = URL.createObjectURL(files[i]);
-      this.imageArray.push(imageUrl);
-    };
-    reader.readAsDataURL(files[i]);
+    const startingSequence = this.imageArray.length > 0 ? this.imageArray[this.imageArray.length - 1].sequence : 0;
+    
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = URL.createObjectURL(files[i]);
+        
+        const newImage = {
+          sequence: startingSequence + i + 1,
+          description: null,
+          original: imageUrl,
+          thumbnail: imageUrl
+        };
+        
+        this.imageArray.push(newImage);
+      };
+      reader.readAsDataURL(files[i]);
+    }
+    
+    this.views = 1.5;
+    console.log(this.views);
+    this.selectedFiles = Array.from(files);
   }
-  this.views = 1.5
-  console.log(this.views)
-  this.selectedFiles = Array.from(files);
-}
-
+  
 
   async removeImage(index: number) {
     this.selectedFiles.splice(index, 1);
@@ -41,21 +53,25 @@ async onFileSelected(event: any) {
     this.updateSwiper();
     });
    await this.updateSwiper();
+   for (let i = index; i < this.imageArray.length; i++) {
+    this.imageArray[i].sequence--;
+  }
   }
 
   async updateSwiper() {
     const swiper = this.swiper.nativeElement.swiper;
     await swiper.update();
+    
   }
 
   async updateConsole() {
-       for (let i = 0; i < this.imageArray.length; i++) { //se usa lenght para hacer llamado a varios tipos de caracteres
-      console.log(`Posición ${i+1}: ${this.imageArray[i]}`);
-    }
+    
+    console.log(this.imageArray);
   }
 
   ngOnInit() {
     this.loadImages();
+    this.updateConsole();
   }
 
   async loadImages() {
@@ -171,12 +187,8 @@ async onFileSelected(event: any) {
       
     ];
   
-    for (const image of images) {
-      const response = await fetch(image.original);
-      const blob = await response.blob();
-      const imageUrl = URL.createObjectURL(blob);
-      this.imageArray.push(imageUrl);
-    }
+    this.imageArray = images;
+    
   }
 
 }
